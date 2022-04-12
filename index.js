@@ -37,20 +37,38 @@ app.get('/', (req, res) => {
     res.send('Bienvenido Angel esta es tu API!');
 })
 
-app.post('/ajax/', urlencodedParser, (req, res) => {
-    //console.log(req.body.nombre_climb);
-    //console.log(req.body.elemento);
+app.post('/insertaFacil/', urlencodedParser, (req, res) => {
+    console.log(req.body.nombre_climb);
+    console.log(req.body.elemento);
     let connection = conectar();
-    const sql = 'INSERT INTO nodejs SET ?';
+    const sql = 'INSERT INTO clasificacionclimbfacil SET ?';
 
     const customerObj = { 
-        nombre:req.body.nombre_climb,
+        nombre_climb:req.body.nombre_climb,
         puntuacion:req.body.elemento
     };
     connection.query(sql,customerObj, error => {
         if (error) throw error;
         res.send('Usuario creado con exito');
-        console.log("Se ha registrado un nuevo usuario, llamado " + customerObj.nombre);
+        console.log("Se ha registrado un nuevo usuario, llamado " + customerObj.nombre_climb);
+    }); 
+    connection.end();
+});
+
+app.post('/insertaNormal/', urlencodedParser, (req, res) => {
+    console.log(req.body.nombre_climb);
+    console.log(req.body.elemento);
+    let connection = conectar();
+    const sql = 'INSERT INTO clasificacionclimb SET ?';
+
+    const customerObj = { 
+        nombre_climb:req.body.nombre_climb,
+        puntuacion:req.body.elemento
+    };
+    connection.query(sql,customerObj, error => {
+        if (error) throw error;
+        res.send('Usuario creado con exito');
+        console.log("Se ha registrado un nuevo usuario, llamado " + customerObj.nombre_climb);
     }); 
     connection.end();
 });
