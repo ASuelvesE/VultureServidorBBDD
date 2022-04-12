@@ -73,6 +73,25 @@ app.post('/insertaNormal/', urlencodedParser, (req, res) => {
     connection.end();
 });
 
+app.post('/insertaMultijugador/', urlencodedParser, (req, res) => {
+    console.log(req.body.nombre_climb);
+    console.log(req.body.elemento);
+    let connection = conectar();
+    const sql = 'INSERT INTO multijugador SET ?';
+
+    const customerObj = { 
+        Victoria:req.body.ganador,
+        Derrota:req.body.perdedor,
+        Fecha:req.body.fecha
+    };
+    connection.query(sql,customerObj, error => {
+        if (error) throw error;
+        res.send('Usuario creado con exito');
+        console.log("Se ha registrado un nuevo usuario, llamado " + customerObj.nombre_climb);
+    }); 
+    connection.end();
+});
+
 app.get('/normal/',(req, res) => {
     let connection = conectar();
     const sql = 'SELECT * FROM clasificacionclimb ORDER BY puntuacion ASC';
