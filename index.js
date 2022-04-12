@@ -20,13 +20,17 @@ const path = require('path'); //Normaliza rutas porque no son iguales en linux,w
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 //MySql
+function conectar(){
+    const connection = mysql.createConnection({
+        host: '153.92.6.159',
+        user:'u786112244_admin',
+        password:'MisApps123!!!',
+        database:'u786112244_login_register',
+    });
+    return connection;
+}
 
-const connection = mysql.createConnection({
-    host: '153.92.6.159',
-    user:'u786112244_admin',
-    password:'MisApps123!!!',
-    database:'u786112244_login_register',
-});
+
 
 //Route (Si no encuentra lo de arriba)
 app.get('/', (req, res) => {
@@ -36,6 +40,7 @@ app.get('/', (req, res) => {
 app.post('/ajax/', urlencodedParser, (req, res) => {
     //console.log(req.body.nombre_climb);
     //console.log(req.body.elemento);
+    let connection = conectar();
     const sql = 'INSERT INTO nodejs SET ?';
 
     const customerObj = { 
@@ -47,9 +52,11 @@ app.post('/ajax/', urlencodedParser, (req, res) => {
         res.send('Usuario creado con exito');
         console.log("Se ha registrado un nuevo usuario, llamado " + customerObj.nombre);
     }); 
+    connection.end();
 });
 
 app.get('/normal/',(req, res) => {
+    let connection = conectar();
     const sql = 'SELECT * FROM clasificacionclimb ORDER BY puntuacion ASC';
 
     connection.query(sql, (error,results) => {
@@ -61,9 +68,11 @@ app.get('/normal/',(req, res) => {
             res.send('No hay resultados');  //de lo contrario no hay resultados
         }
     });
+    connection.end();
 });
 
 app.get('/facil/',(req, res) => {
+    let connection = conectar();
     const sql = 'SELECT * FROM clasificacionclimbfacil ORDER BY puntuacion ASC';
 
     connection.query(sql, (error,results) => {
@@ -75,9 +84,11 @@ app.get('/facil/',(req, res) => {
             res.send('No hay resultados');  //de lo contrario no hay resultados
         }
     });
+    connection.end();
 });
 
 app.get('/multijugador/',(req, res) => {
+    let connection = conectar();
     const sql = 'SELECT * FROM multijugador ORDER BY Fecha DESC';
 
     connection.query(sql, (error,results) => {
@@ -89,6 +100,8 @@ app.get('/multijugador/',(req, res) => {
             res.send('No hay resultados');  //de lo contrario no hay resultados
         }
     });
+    connection.end();
+    
 });
 
 
