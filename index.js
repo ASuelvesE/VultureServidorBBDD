@@ -59,7 +59,7 @@ app.get('/normal/',(req, res) => {
         if (error) throw error;  //si hay error enviamos el error
         if (results.length > 0){ //si hay 1 o mas de 1 enviamos resultados
             res.json(results);
-            console.log("enviando")
+            console.log("Peticion recibida y respondida")
         }else {
             res.send('No hay resultados');  //de lo contrario no hay resultados
         }
@@ -75,7 +75,7 @@ app.get('/facil/',(req, res) => {
         if (error) throw error;  //si hay error enviamos el error
         if (results.length > 0){ //si hay 1 o mas de 1 enviamos resultados
             res.json(results);
-            console.log("enviando")
+            console.log("Peticion recibida y respondida")
         }else {
             res.send('No hay resultados');  //de lo contrario no hay resultados
         }
@@ -91,7 +91,7 @@ app.get('/multijugador/',(req, res) => {
         if (error) throw error;  //si hay error enviamos el error
         if (results.length > 0){ //si hay 1 o mas de 1 enviamos resultados
             res.json(results);
-            console.log("enviando")
+            console.log("Peticion recibida y respondida")
         }else {
             res.send('No hay resultados');  //de lo contrario no hay resultados
         }
