@@ -28,15 +28,6 @@ const connection = mysql.createConnection({
     database:'u786112244_login_register',
 });
 
-/*
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user:'root',
-    password:'',
-    database:'prueba'
-});
-*/
-
 //Route (Si no encuentra lo de arriba)
 app.get('/', (req, res) => {
     res.send('Bienvenido Angel esta es tu API!');
