@@ -36,7 +36,6 @@ app.get('/', (req, res) => {
 app.post('/ajax/', urlencodedParser, (req, res) => {
     //console.log(req.body.nombre_climb);
     //console.log(req.body.elemento);
-    connection.connect();
     const sql = 'INSERT INTO nodejs SET ?';
 
     const customerObj = { 
@@ -48,11 +47,9 @@ app.post('/ajax/', urlencodedParser, (req, res) => {
         res.send('Usuario creado con exito');
         console.log("Se ha registrado un nuevo usuario, llamado " + customerObj.nombre);
     }); 
-    connection.end();
 });
 
 app.get('/normal/',(req, res) => {
-    connection.connect();
     const sql = 'SELECT * FROM clasificacionclimb ORDER BY puntuacion ASC';
 
     connection.query(sql, (error,results) => {
@@ -64,11 +61,9 @@ app.get('/normal/',(req, res) => {
             res.send('No hay resultados');  //de lo contrario no hay resultados
         }
     });
-    connection.end();
 });
 
 app.get('/facil/',(req, res) => {
-    connection.connect();
     const sql = 'SELECT * FROM clasificacionclimbfacil ORDER BY puntuacion ASC';
 
     connection.query(sql, (error,results) => {
@@ -80,11 +75,9 @@ app.get('/facil/',(req, res) => {
             res.send('No hay resultados');  //de lo contrario no hay resultados
         }
     });
-    connection.end();
 });
 
 app.get('/multijugador/',(req, res) => {
-    connection.connect();
     const sql = 'SELECT * FROM multijugador ORDER BY Fecha DESC';
 
     connection.query(sql, (error,results) => {
@@ -96,7 +89,6 @@ app.get('/multijugador/',(req, res) => {
             res.send('No hay resultados');  //de lo contrario no hay resultados
         }
     });
-    connection.end();
 });
 
 
