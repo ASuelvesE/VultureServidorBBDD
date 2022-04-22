@@ -207,7 +207,7 @@ app.get('/multijugador/', (req, res) => {
 
 app.get('/pvp/', (req, res) => {
     let connection = conectar();
-    const sql = 'SELECT Victoria,COUNT(Victoria) FROM multijugador GROUP BY Victoria';
+    const sql = 'SELECT Victoria FROM multijugador';
 
     connection.query(sql, (error, results) => {
         if (error) throw error;  //si hay error enviamos el error
