@@ -217,7 +217,7 @@ app.get('/pvp/', (req, res) => {
         } else {
             res.send('No hay resultados');  //de lo contrario no hay resultados
         }
-    });
+    }); 
     connection.end();
 });
 
