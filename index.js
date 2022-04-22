@@ -203,7 +203,22 @@ app.get('/multijugador/', (req, res) => {
         }
     });
     connection.end();
+});
 
+app.get('/pvp/', (req, res) => {
+    let connection = conectar();
+    const sql = 'SELECT Victoria,COUNT(Victoria) as numVictorias FROM multijugador GROUP BY Victoria ORDER BY numVictorias DESC';
+
+    connection.query(sql, (error, results) => {
+        if (error) throw error;  //si hay error enviamos el error
+        if (results.length > 0) { //si hay 1 o mas de 1 enviamos resultados
+            res.json(results);
+            console.log("Peticion recibida y respondida")
+        } else {
+            res.send('No hay resultados');  //de lo contrario no hay resultados
+        }
+    });
+    connection.end();
 });
 
 
