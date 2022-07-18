@@ -46,7 +46,7 @@ app.post('/newUser/', urlencodedParser, (req, res) => {
     connection.query(sql, customerObj, error => {
         if (error) throw error;
         res.send('Usuario creado con exito');
-        console.log("Se ha registrado un nuevo usuario, llamado " + customerObj.nick);
+        console.log("Se ha registrado un nuevo usuario, llamado: " + customerObj.nick);
     });
     connection.end();
 });
