@@ -11,7 +11,8 @@ const app = express();
 app.use(formData.parse());
 
 app.use(cors({
-    origin: '*'
+    origin: '*',
+    methods: ["GET", "POST"]
 }));
 
 const path = require('path'); //Normaliza rutas porque no son iguales en linux,windows...
