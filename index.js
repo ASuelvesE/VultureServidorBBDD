@@ -36,7 +36,20 @@ function conectar() {
 app.get('/', (req, res) => {
     res.send('Bienvenido Angel esta es tu API!');
 });
+app.post('/newUser/', urlencodedParser, (req, res) => {
+    let connection = conectar();
+    const sql = 'INSERT INTO multijugador SET ?';
 
+    const customerObj = {
+        nick: req.body.producto
+    };
+    connection.query(sql, customerObj, error => {
+        if (error) throw error;
+        res.send('Usuario creado con exito');
+        console.log("Se ha registrado un nuevo usuario, llamado " + customerObj.nick);
+    });
+    connection.end();
+});
 function insertaFacil(nombre,puntos){
     var connection = conectar();
     const sql = 'INSERT INTO clasificacionclimbfacil SET ?';
@@ -152,7 +165,7 @@ app.post('/insertaMultijugador/', urlencodedParser, (req, res) => {
     connection.query(sql, customerObj, error => {
         if (error) throw error;
         res.send('Usuario creado con exito');
-        console.log("Se ha registrado un nuevo usuario, llamado " + customerObj.nombre_climb);
+        //console.log("Se ha registrado un nuevo usuario, llamado " + customerObj.nombre_climb);
     });
     connection.end();
 });
