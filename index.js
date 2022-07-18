@@ -37,6 +37,7 @@ app.get('/', (req, res) => {
     res.send('Bienvenido Angel esta es tu API!');
 });
 app.post('/newUser/', urlencodedParser, (req, res) => {
+    console.log("estoyyyyyyty");
     let connection = conectar();
     const sql = 'INSERT INTO jugadores SET ?';
 
