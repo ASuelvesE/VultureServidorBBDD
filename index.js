@@ -103,6 +103,7 @@ app.post('/insertaFacil/', urlencodedParser, (req, res) => {
     connection.end();
 });
 function insertaNormal(nombre,puntos){
+    console.log("insertanormalllll")
     var connection = conectar();
     const sql = 'INSERT INTO clasificacionclimb SET ?';
     const customerObj = {
