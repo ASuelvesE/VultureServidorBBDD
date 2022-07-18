@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
     res.send('Bienvenido Angel esta es tu API!');
 });
 app.post('/newUser/', urlencodedParser, (req, res) => {
-    console.log("estoyyyyyyty");
+    console.log(req.body.producto);
     let connection = conectar();
     const sql = 'INSERT INTO jugadores SET ?';
 
@@ -103,7 +103,6 @@ app.post('/insertaFacil/', urlencodedParser, (req, res) => {
     connection.end();
 });
 function insertaNormal(nombre,puntos){
-    console.log("insertanormalllll")
     var connection = conectar();
     const sql = 'INSERT INTO clasificacionclimb SET ?';
     const customerObj = {
