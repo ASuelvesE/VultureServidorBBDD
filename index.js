@@ -38,7 +38,7 @@ app.get('/', (req, res) => {
 });
 app.post('/newUser/', urlencodedParser, (req, res) => {
     let connection = conectar();
-    const sql = 'INSERT INTO multijugador SET ?';
+    const sql = 'INSERT INTO jugadores SET ?';
 
     const customerObj = {
         nick: req.body.producto
